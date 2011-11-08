@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>Datepicker Extension</title>
+    <link rel="shortcut icon" href="fw-logo.ico">
+    <link rel="stylesheet" href="themes/base/minified/jquery.ui.all.min.css" />
+    <script type="text/javascript" src="jquery-1.4.4.js"></script>
+    <script src="jquery.ui.core.js"></script>
+    <script src="jquery.ui.widget.js"></script>
+    <script src="jquery.ui.datepicker.js"></script>
+    <script src="jquery.ui.period.datepicker.js"></script>
+    <style>
+      /* For Demo */
+      *{font:12px/1.5em "Lucida Grande",Segoe,Tahoma,sans-serif}
+      #monthTest{margin-bottom:20px;}
+
+      /* For Component */
+      .ui-datepicker-year-header{font-weight:bold;}
+      table.ui-fwpicker-calendar{margin-top:5px;}
+      .ui-datepicker-prev, .ui-datepicker-next{cursor:pointer;}
+    </style>
+  </head>
+  <body>
+    <h3>Date Picker</h3>
+    <div id="date">
+      <input type="text" id="datepicker1" />
+      <input type="text" id="datepicker2" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#datepicker1").datepicker();
+        $("#datepicker2").datepicker();
+      });
+    </script>
+
+    <h3>Weekends Picker</h3>
+    <div id="week">
+      <input type="text" id="weekpicker5" />
+      <input type="text" id="weekpicker6" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#weekpicker5").datepicker({
+          beforeShowDay: $.datepicker.onlyWeekends
+        });
+        $("#weekpicker6").datepicker({
+          beforeShowDay: $.datepicker.onlyWeekends
+        });
+      });
+    </script>
+
+    <h3>Month Picker</h3>
+    <div id="month">
+      <input type="text" id="monthpicker1" />
+      <input type="text" id="monthpicker2" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#monthpicker1").datepicker({
+          monthpicker: true
+        });
+        $("#monthpicker2").datepicker({
+          monthpicker: true,
+          lastDay: true
+        });
+      });
+    </script>
+
+    <h3>Quarter Picker</h3>
+    <div id="quarter">
+      <input type="text" id="quarterpicker1" />
+      <input type="text" id="quarterpicker2" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#quarterpicker1").datepicker({
+          quarterpicker: true
+        });
+        $("#quarterpicker2").datepicker({
+          quarterpicker: true,
+          lastDay: true
+        });
+      });
+    </script>
+  </body>
+</html>
