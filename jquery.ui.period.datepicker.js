@@ -1,7 +1,7 @@
 /**
 * @description  
 *   extends $.datepicker for fw requirements, include week, month, quarter
-* @extends          $.datepicekr
+* @extends          $.datepicker
 * @requires         @.datepicker
 */
 
