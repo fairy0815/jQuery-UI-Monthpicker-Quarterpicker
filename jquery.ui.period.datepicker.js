@@ -179,8 +179,9 @@
       }
       tbody += '</tr>';
       var $tbody = $(tbody);
-      $tbody.find("a.ui-state-default").click(function() {
+      $tbody.find("a.ui-state-default").click(function(e) {
         obj.__selectQuarter(inst, $(this), obj);
+        e.preventDefault();
       });
       $html.find("table").css("marginTop", "5px").children('tbody').append($tbody);
       return $html.children();
@@ -315,8 +316,9 @@
         tbody += '</tr>';
       }
       var $tbody = $(tbody);
-      $tbody.find("a.ui-state-default").click(function() {
+      $tbody.find("a.ui-state-default").click(function(e) {
         obj.__selectMonth(inst, $(this), obj);
+        e.preventDefault();
       });
       $html.find("table").css("marginTop", "5px").children('tbody').append($tbody);
       return $html.children();
