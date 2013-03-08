@@ -222,7 +222,9 @@
             inst.currentMonth=val[0]-1;
             inst.currentYear=val[2];
             this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
-            inst.input.val(lastdayval);
+            var dateFormat = this._get(inst, 'dateFormat');
+            formattedlastdayval = lastdayval.split('/');
+            inst.input.val(this.formatDate(dateFormat,new Date(formattedlastdayval[2],formattedlastdayval[0]-1,formattedlastdayval[1])));
             break;
         case "alternate":
             lastdayval = lastdayval.split('/');
@@ -230,6 +232,9 @@
             inst.currentMonth=lastdayval[0]-1;
             inst.currentYear=lastdayval[2];
             this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            var dateFormat = this._get(inst, 'dateFormat');
+            val = val.split('/');
+            val = this.formatDate(dateFormat,new Date(val[2],val[0]-1,val[1]));
             inst.input.val(val);
             break;
         case true:
