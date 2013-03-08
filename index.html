@@ -88,5 +88,97 @@
         });
       });
     </script>
+
+    <h3>Month Picker with AltField different format than primary field (no last day)</h3>
+    <div id="month">
+      <input type="text" id="monthpicker3" />
+      <input type="text" id="monthpicker4" />
+      <input type="text" id="altmonthpicker1" />
+      <input type="text" id="altmonthpicker2" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#monthpicker3").datepicker({
+          altField:"#altmonthpicker1",
+          altFormat:"mm/dd/yy",
+          dateFormat:"mm/yy",
+          monthpicker: true
+        });
+        $("#monthpicker4").datepicker({
+          altField:"#altmonthpicker2",
+          altFormat:"mm/dd/yy",
+          dateFormat:"mm/yy",
+          monthpicker: true,
+        });
+      });
+    </script>
+
+    <h3>Quarter Picker with both primary field and AltField lastDay</h3>
+    <div id="quarter">
+      <input type="text" id="quarterpicker3" />
+      <input type="text" id="quarterpicker4" />
+      <input type="text" id="altquarterpicker1" />
+      <input type="text" id="altquarterpicker2" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#quarterpicker3").datepicker({
+          altField:"#altquarterpicker1",
+          quarterpicker: true
+        });
+        $("#quarterpicker4").datepicker({
+          altField:"#altquarterpicker2",
+          quarterpicker: true,
+          lastDay: "both"
+        });
+      });
+    </script>
+
+    <h3>Month Picker with AltField Last Day</h3>
+    <div id="month">
+      <input type="text" id="monthpicker5" />
+      <input type="text" id="monthpicker6" />
+      <input type="text" id="altmonthpicker3" />
+      <input type="text" id="altmonthpicker4" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#monthpicker5").datepicker({
+          altField:"#altmonthpicker3",
+          monthpicker: true
+        });
+        $("#monthpicker6").datepicker({
+          altField:"#altmonthpicker4",
+          monthpicker: true,
+          lastDay: "alternate"
+        });
+      });
+    </script>
+
+    <h3>Quarter Picker with primary field last day, altfield regular</h3>
+    <div id="quarter">
+      <input type="text" id="quarterpicker5" />
+      <input type="text" id="quarterpicker6" />
+      <input type="text" id="altquarterpicker3" />
+      <input type="text" id="altquarterpicker4" />
+    </div>
+    
+    <script>
+      $(function() {
+        $("#quarterpicker5").datepicker({
+          altField:"#altquarterpicker3",
+          quarterpicker: true
+        });
+        $("#quarterpicker6").datepicker({
+          altField:"#altquarterpicker4",
+          quarterpicker: true,
+          lastDay: "primary"
+        });
+      });
+    </script>
+
   </body>
 </html>
