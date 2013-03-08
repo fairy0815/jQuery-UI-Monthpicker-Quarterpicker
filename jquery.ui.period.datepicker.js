@@ -1,7 +1,7 @@
 /**
 * @description  
 *   extends $.datepicker for fw requirements, include week, month, quarter
-* @extends          $.datepicekr
+* @extends          $.datepicker
 * @requires         @.datepicker
 */
 
@@ -205,14 +205,48 @@
     __selectQuarter: function(inst, $obj, obj) {
       var val = $obj.attr("title"),
           eventSelect = obj._get(inst, 'onSelect');
-      
-      if(obj._get(inst, 'lastDay')) {
-        val = val.split('/');
-        val[0] = Math.floor(val[0] / 3) * 3 + 3;
-        val = val[0] + '/' + (32 - new Date(val[2], val[0] - 1, 32).getDate()) + '/' + val[2];
+
+      lastDayOption=obj._get(inst, 'lastDay');      
+
+      if(lastDayOption) {
+        lastdayval = val.split('/');
+        lastdayval[0] = Math.floor(lastdayval[0] / 3) * 3 + 3;
+        lastdayval = lastdayval[0] + '/' + (32 - new Date(lastdayval[2], lastdayval[0] - 1, 32).getDate()) + '/' + lastdayval[2];
       }
 
-      inst.input.val(val);
+
+      switch(lastDayOption) {
+        case "primary":
+            val = val.split('/');
+            inst.currentDay=val[1];
+            inst.currentMonth=val[0]-1;
+            inst.currentYear=val[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            var dateFormat = this._get(inst, 'dateFormat');
+            formattedlastdayval = lastdayval.split('/');
+            inst.input.val(this.formatDate(dateFormat,new Date(formattedlastdayval[2],formattedlastdayval[0]-1,formattedlastdayval[1])));
+            break;
+        case "alternate":
+            lastdayval = lastdayval.split('/');
+            inst.currentDay=lastdayval[1];
+            inst.currentMonth=lastdayval[0]-1;
+            inst.currentYear=lastdayval[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            var dateFormat = this._get(inst, 'dateFormat');
+            val = val.split('/');
+            val = this.formatDate(dateFormat,new Date(val[2],val[0]-1,val[1]));
+            inst.input.val(val);
+            break;
+        case true:
+        case "both":
+            val=lastdayval;
+        default:
+            val = val.split('/');
+            inst.currentDay=val[1];
+            inst.currentMonth=val[0]-1;
+            inst.currentYear=val[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+      }
       
       if (eventSelect)
         eventSelect.apply(inst.input, [val, inst]);
@@ -333,12 +367,43 @@
       var val = $obj.attr("title"),
           eventSelect = obj._get(inst, 'onSelect');
 
-      if(obj._get(inst, 'lastDay')) {
-        val = val.split('/');
-        val = (val[0] + '/' + (32 - new Date(val[2], val[0] - 1, 32).getDate()) + '/' + val[2]);
+
+      lastDayOption=obj._get(inst, 'lastDay');
+
+      if(lastDayOption) {
+        lastdayval = val.split('/');
+        lastdayval = (lastdayval[0] + '/' + (32 - new Date(lastdayval[2], lastdayval[0] - 1, 32).getDate()) + '/' + lastdayval[2]);
       }
 
-      inst.input.val(val);
+      switch(lastDayOption) {
+        case "primary":
+            val = val.split('/');
+            inst.currentDay=val[1];
+            inst.currentMonth=val[0]-1;
+            inst.currentYear=val[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            inst.input.val(lastdayval);
+            break;
+        case "alternate":
+            lastdayval = lastdayval.split('/');
+            inst.currentDay=lastdayval[1];
+            inst.currentMonth=lastdayval[0]-1;
+            inst.currentYear=lastdayval[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            inst.input.val(val);
+            break;
+        case true:
+        case "both":
+            val=lastdayval;
+        default:
+            val = val.split('/');
+            inst.currentDay=val[1];
+            inst.currentMonth=val[0]-1;
+            inst.currentYear=val[2];
+            this._selectDate("#"+inst.id,this._formatDate(inst,inst.currentDay,inst.currentMonth,inst.currentYear));
+            
+      }
+      
       
       if (eventSelect)
         eventSelect.apply(inst.input, [val, inst]);
